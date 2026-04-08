@@ -1,0 +1,866 @@
+/* ================= VARIABLES & RESET ================= */
+:root {
+  --primary-color: #7C5CBF;
+  --secondary-color: #5a3d99;
+  --accent-color: #d4af37;
+  --text-dark: #333333;
+  --text-light: #f4f4f4;
+  --bg-color: #fafdfc;
+  --font-script: 'Great Vibes', cursive;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  z-index: -2;       
+  /* Thêm dòng này để tăng độ sáng cho ảnh gốc lên 115% */
+  /* filter: brightness(115%);  */
+}
+
+/* ================= TYPOGRAPHY ================= */
+.script {
+  font-family: var(--font-script);
+  color: var(--primary-color);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: -2;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  /* position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1; */
+  display: none;
+}
+
+.hero-content {
+  z-index: 1;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-family: var(--font-script);
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-logo-wrap {
+  margin: 1.5rem 0;
+}
+
+.hero-logo {
+  max-width: 150px;
+}
+
+.hero-date, .hero-venue {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.btn-save-date {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 10px 30px;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+}
+
+.btn-save-date:hover {
+  background: var(--accent-color);
+  color: var(--text-dark);
+}
+
+/* ================= UTILITIES & LAYOUT ================= */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+.skip-link:focus { top: 0; }
+
+.section {
+  padding: 5rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.diamond-divider {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin: 2rem 0;
+  opacity: 0.5;
+}
+
+/* ================= COUNTDOWN ================= */
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.countdown-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(124, 92, 191, 0.1);
+  min-width: 100px;
+  text-align: center;
+  border: 1px solid rgba(124, 92, 191, 0.2);
+}
+
+.countdown-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #777;
+}
+
+/* ================= DRESS CODE ================= */
+.dress-code-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dress-dot {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.dress-dot:hover {
+  transform: scale(1.1);
+}
+
+.dress-blue { background-color: #0ea5e9; } /* Màu xanh dương giống ảnh */
+.dress-white { background-color: #ffffff; border: 2px solid #eaeaea; }
+.dress-black { background-color: #1a1a1a; }
+
+/* ================= VENUE CARD ================= */
+.venue-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  margin-top: 3rem;
+}
+
+.venue-img-wrap img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.venue-info {
+  padding: 2.5rem;
+  text-align: left;
+}
+
+.venue-tag {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.venue-name {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin: 0.5rem 0 1.5rem 0;
+  color: var(--primary-color);
+}
+
+.venue-detail-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.accent-icon {
+  color: var(--primary-color);
+  width: 25px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.venue-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-filled, .btn-outline {
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+}
+
+.btn-filled {
+  background: var(--primary-color);
+  color: white;
+}
+.btn-filled:hover { background: var(--secondary-color); }
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+.btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* ================= TIMELINE CARD STYLE (GIỐNG ẢNH MỚI) ================= */
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  max-width: 600px; /* Độ rộng thẻ vừa phải để giống ảnh */
+  padding-left: 3rem; /* Để khoảng trống cho icon và đường kẻ */
+}
+
+/* Đường kẻ dọc mỏng màu tím nhạt */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 19px; /* Căn giữa icon */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e2dcf4; /* Màu tím siêu nhạt giống ảnh */
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Biểu tượng (Icon) nằm trên đường kẻ */
+.timeline-icon {
+  position: absolute;
+  left: -3rem; /* Kéo ra ngoài đè lên đường kẻ */
+  width: 40px;
+  height: 40px;
+  background: #f0eaff; /* Nền tròn tím cực nhạt */
+  color: #7C5CBF; /* Icon màu tím đậm */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.8); /* Tạo khoảng hở giữa icon và đường kẻ */
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Thẻ chứa nội dung */
+.timeline-card {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(124, 92, 191, 0.08); /* Bóng đổ màu tím rất nhẹ */
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Chữ trên, badge giờ ở dưới */
+  align-items: flex-start;
+  gap: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng mượt mà khi di chuột */
+.timeline-item:hover .timeline-card {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(124, 92, 191, 0.15);
+}
+.timeline-item:hover .timeline-icon {
+  background: #7C5CBF;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Tiêu đề sự kiện */
+.timeline-event-title {
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: #7C5CBF; /* Chữ màu tím */
+  font-family: var(--font-heading); /* Dùng font serif mỏng thanh lịch */
+  letter-spacing: 0.5px;
+}
+
+/* Badge hiển thị giờ */
+.timeline-badge {
+  background: #f0eaff; /* Nền tím nhạt */
+  color: #7C5CBF; /* Chữ tím đậm */
+  padding: 4px 12px;
+  border-radius: 20px; /* Bo tròn giống viên thuốc */
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+}
+
+/* Cho màn hình điện thoại */
+@media (max-width: 480px) {
+  .timeline { padding-left: 2.5rem; }
+  .timeline::before { left: 14px; }
+  .timeline-icon { left: -2.5rem; width: 30px; height: 30px; font-size: 0.9rem; }
+  .timeline-card { padding: 1rem; }
+}
+/* ================= FOOTER & MISC ================= */
+.site-footer {
+  background: #1a1a1a;
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-top: 0;      /* <--- Đổi thành 0 hoặc xóa hẳn dòng này đi */
+
+}
+
+.back-to-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+.footer-title {
+  font-family: var(--font-script);
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.float-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--primary-color);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 99;
+  animation: bounce 2s infinite;
+}
+
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
+
+/* ================= ANIMATIONS ================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 3rem; }
+  .section-title { font-size: 2rem; }
+  .timeline-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .venue-buttons { flex-direction: column; }
+}
+/* ================= THÊM ẢNH NỀN CHO TỪNG PHẦN ================= */
+
+/* 1. Phần Countdown */
+.countdown-section {
+  /* background-image: url('../img/anh1.png'); /* <-- Thay tên ảnh của bạn vào đây */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 20px; /* Bo góc mượt mà */
+  overflow: hidden;
+  margin-bottom: 2rem; */
+}
+
+/* 2. Phần Timelines */
+.schedule-section {
+  /* background-image: url('../img/anh2.png'); /* <-- Thay tên ảnh của bạn vào đây */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 2rem; */
+}
+
+/* 3. Phần Dress Code & Event Details */
+/* .venue-section {
+  background-image: url('../img/anh3.png'); /* <-- Thay tên ảnh của bạn vào đây */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+} */
+
+/* ================= LỚP PHỦ MỜ (OVERLAY) ================= */
+/* Rất quan trọng: Giúp làm mờ ảnh nền đi một chút để chữ màu tím bên trên vẫn đọc được rõ ràng */
+
+.countdown-section::before,
+.schedule-section::before,
+.venue-section::before {
+  content: '';
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.65); /* 0.65 là độ mờ của lớp trắng. Tăng lên 0.8 nếu muốn chữ rõ hơn, giảm xuống 0.4 nếu muốn ảnh đậm hơn */
+  z-index: 1; /* Nằm trên ảnh nền */
+}
+
+/* Đẩy toàn bộ nội dung (chữ, thẻ card) nổi lên trên lớp phủ mờ */
+.countdown-section > *,
+.schedule-section > *,
+.venue-section > * {
+  position: relative;
+  z-index: 2; 
+}
+/* ================= IMAGE SLIDER (CAROUSEL) ================= */
+/* ================= VINTAGE COLLAGE (ẢNH GHÉP TỰ DO) ================= */
+.collage-section {
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.collage-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;  /* Chiều rộng vừa phải để ảnh gọn gàng trên mobile & PC */
+  height: 650px;     /* Độ cao đủ để rải 4 ảnh từ trên xuống dưới */
+  margin: 0 auto;
+}
+
+/* Khung viền chung cho cả 4 ảnh */
+.vintage-frame {
+  position: absolute;
+  background: #ffdede; /* Nền khung màu hồng phấn */
+  padding: 10px; /* Độ dày của khung */
+  border-radius: 18px; /* Bo góc mềm mại */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12); /* Bóng đổ tạo độ nổi */
+  border: 3px solid #f6baba; /* Đường viền đậm hơn một chút */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Hiệu ứng chuyển động nảy nhẹ */
+  cursor: pointer;
+}
+
+/* Bo góc cho bức ảnh bên trong cho khớp với khung */
+.vintage-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; 
+}
+
+/* ================= SẮP XẾP VỊ TRÍ TỪNG ẢNH ================= */
+/* Ảnh 1: Trái trên (Nghiêng trái) */
+.frame-1 {
+  top: 0; left: 5%;
+  width: 45%; height: 32%;
+  transform: rotate(-6deg);
+  z-index: 2;
+}
+
+/* Ảnh 2: Phải trên (Nghiêng phải, nhỏ hơn chút) */
+.frame-2 {
+  top: 5%; right: 2%;
+  width: 40%; height: 28%;
+  transform: rotate(10deg);
+  z-index: 1;
+}
+
+/* Ảnh 3: Ở giữa trái (Nghiêng nhẹ) */
+.frame-3 {
+  top: 35%; left: 8%;
+  width: 46%; height: 34%;
+  transform: rotate(-4deg);
+  z-index: 3;
+}
+
+/* Ảnh 4: Phải dưới (Nghiêng phải) */
+.frame-4 {
+  bottom: 0; right: 8%;
+  width: 44%; height: 32%;
+  transform: rotate(6deg);
+  z-index: 2;
+}
+
+/* ================= HIỆU ỨNG KHI DI CHUỘT VÀO ================= */
+/* ================= VINTAGE COLLAGE 10 ẢNH ================= */
+.collage-section {
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.collage-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;  /* Nới rộng khung ra để chứa 10 ảnh */
+  height: 1200px;    /* Kéo dài chiều cao */
+  margin: 0 auto;
+}
+
+/* Khung viền chung cho cả 10 ảnh */
+.vintage-frame {
+  position: absolute;
+  background: #ffdede; 
+  padding: 10px; 
+  border-radius: 14px; 
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+  border: 3px solid #f6baba; 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  cursor: pointer;
+  /* Kích thước trung bình cho các ảnh, sẽ tinh chỉnh riêng ở dưới */
+  width: 28%; 
+  aspect-ratio: 3 / 4; /* Ép tỷ lệ ảnh hơi dọc giống ảnh Polaroid */
+}
+
+.vintage-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; 
+}
+
+/* ================= TỌA ĐỘ VÀ ĐỘ NGHIÊNG CHO 10 ẢNH ================= */
+
+/* Nút mũi tên */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  color: #7C5CBF;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-btn:hover {
+  background: #7C5CBF;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* Dấu chấm bên dưới */
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.indicator.active {
+  background: white;
+  width: 25px;
+  border-radius: 6px; /* Chấm active sẽ kéo dài ra một chút */
+}
+
+@media (max-width: 600px) {
+  .carousel-btn { width: 35px; height: 35px; font-size: 1rem; }
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+}
+
+/* ================= ĐẢM BẢO MAIN HIỆN RÕ ẢNH NỀN ================= */
+/* ================= FIX LỖI NỀN TRẮNG ================= */
+main {
+  /* Đường dẫn ảnh nền của bạn */
+  background-image: url('../img/logo2.png'); 
+  background-repeat: repeat; 
+  background-size: auto; 
+  position: relative;
+  z-index: 1;
+  overflow: visible; /* Cho phép ảnh collage hiển thị tràn ra nếu cần */
+}
+
+/* Xóa bỏ hoặc làm lớp phủ thật trong suốt */
+main::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Chỉnh về 0.1 để chỉ hơi sáng nhẹ, hiện rõ nền xanh bên dưới */
+  background: rgba(255, 255, 255, 0.1); 
+  z-index: -1;
+}
+
+/* Đảm bảo các section không có nền trắng đè lên main */
+.section {
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= VINTAGE COLLAGE 17 ẢNH TẢN ĐỀU RỘNG RÃI ================= */
+.collage-section {
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 0; /* Đẩy khối này nổi lên trên lớp mờ của main */
+  background: transparent !important; /* Ép buộc trong suốt 100%, không che nền */
+}
+
+.collage-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; 
+  height: 1600px;    
+  margin: 0 auto;
+}
+
+/* Khung viền chung cho cả 17 ảnh */
+.vintage-frame {
+  position: absolute;
+  background: #ffdede; 
+  padding: 10px; 
+  border-radius: 14px; 
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+  border: 3px solid #f6baba; 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  cursor: pointer;
+  width: 25%; 
+  aspect-ratio: 4 / 3; 
+}
+
+.vintage-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; 
+}
+
+/* ================= BỐ CỤC ZIC-ZẮC TẢN ĐỀU ================= */
+/* Hàng 1 (3 Ảnh) */
+.frame-1  { top: 2%;   left: 2%;   transform: rotate(-5deg); z-index: 2; width: 26%; }
+.frame-2  { top: 5%;   left: 38%;  transform: rotate(4deg);  z-index: 1; width: 24%; }
+.frame-3  { top: 1%;   right: 2%;  transform: rotate(-3deg); z-index: 3; width: 26%; }
+
+/* Hàng 2 (2 Ảnh) */
+.frame-4  { top: 15%;  left: 18%;  transform: rotate(6deg);  z-index: 4; width: 25%; }
+.frame-5  { top: 18%;  right: 18%; transform: rotate(-5deg); z-index: 2; width: 25%; }
+
+/* Hàng 3 (3 Ảnh) */
+.frame-6  { top: 30%;  left: 0%;   transform: rotate(-4deg); z-index: 3; width: 24%; }
+.frame-7  { top: 32%;  left: 40%;  transform: rotate(5deg);  z-index: 1; width: 23%; }
+.frame-8  { top: 28%;  right: 0%;  transform: rotate(-6deg); z-index: 2; width: 26%; }
+
+/* Hàng 4 (2 Ảnh) */
+.frame-9  { top: 44%;  left: 20%;  transform: rotate(4deg);  z-index: 4; width: 25%; }
+.frame-10 { top: 46%;  right: 22%; transform: rotate(-3deg); z-index: 3; width: 24%; }
+
+/* Hàng 5 (3 Ảnh) */
+.frame-11 { top: 58%;  left: 3%;   transform: rotate(-5deg); z-index: 2; width: 24%; }
+.frame-12 { top: 60%;  left: 36%;  transform: rotate(4deg);  z-index: 1; width: 26%; }
+.frame-13 { top: 56%;  right: 3%;  transform: rotate(-4deg); z-index: 3; width: 25%; }
+
+/* Hàng 6 (2 Ảnh) */
+.frame-14 { top: 72%;  left: 18%;  transform: rotate(5deg);  z-index: 4; width: 26%; }
+.frame-15 { top: 74%;  right: 20%; transform: rotate(-6deg); z-index: 2; width: 25%; }
+
+/* Hàng 7 (2 Ảnh chốt sổ dưới cùng) */
+.frame-16 { top: 85%;  left: 10%;  transform: rotate(-4deg); z-index: 3; width: 28%; }
+.frame-17 { top: 83%;  right: 12%; transform: rotate(5deg);  z-index: 1; width: 28%; }
+
+/* ================= HIỆU ỨNG KHI RÊ CHUỘT ================= */
+.vintage-frame:hover {
+  transform: scale(1.25) rotate(0deg); 
+  z-index: 50; 
+  box-shadow: 0 25px 50px rgba(246, 186, 186, 0.9);
+}
+
+/* ================= RESPONSIVE CHO ĐIỆN THOẠI ================= */
+@media (max-width: 768px) {
+  .collage-container { 
+    height: 2600px; 
+    max-width: 600px;
+  }
+  .vintage-frame { 
+    width: 46%; 
+    padding: 6px; 
+  }
+  
+  .frame-1  { top: 1%;   left: 2%;  }
+  .frame-2  { top: 4%;   right: 2%; }
+  .frame-3  { top: 11%;  left: 12%; }
+  .frame-4  { top: 14%;  right: 12%; }
+  .frame-5  { top: 22%;  left: 2%;  }
+  .frame-6  { top: 25%;  right: 2%; }
+  .frame-7  { top: 33%;  left: 15%; }
+  .frame-8  { top: 36%;  right: 10%;}
+  .frame-9  { top: 44%;  left: 2%;  }
+  .frame-10 { top: 47%;  right: 2%; }
+  .frame-11 { top: 55%;  left: 10%; }
+  .frame-12 { top: 58%;  right: 15%; }
+  .frame-13 { top: 66%;  left: 2%;  }
+  .frame-14 { top: 69%;  right: 2%; }
+  .frame-15 { top: 78%;  left: 12%; }
+  .frame-16 { top: 81%;  right: 12%;}
+  .frame-17 { top: 90%;  left: 26%; } 
+}
