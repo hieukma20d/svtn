@@ -1,38 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. COUNTDOWN TIMER logic
-  const targetDate = new Date("2026-04-11T19:00:00+07:00").getTime();
+// 1. COUNTDOWN TIMER logic
+ // Đã cập nhật sang ngày 19/04/2026 lúc 19:00 (Múi giờ Việt Nam +07:00)
+ const targetDate = new Date("2026-04-19T19:00:00+07:00").getTime();
 
-  const daysEl = document.getElementById("cd-days");
-  const hoursEl = document.getElementById("cd-hours");
-  const minutesEl = document.getElementById("cd-minutes");
-  const secondsEl = document.getElementById("cd-seconds");
+ const daysEl = document.getElementById("cd-days");
+ const hoursEl = document.getElementById("cd-hours");
+ const minutesEl = document.getElementById("cd-minutes");
+ const secondsEl = document.getElementById("cd-seconds");
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+ function updateCountdown() {
+   const now = new Date().getTime();
+   const distance = targetDate - now;
 
-    if (distance < 0) {
-      daysEl.innerText = "00";
-      hoursEl.innerText = "00";
-      minutesEl.innerText = "00";
-      secondsEl.innerText = "00";
-      return;
-    }
+   if (distance < 0) {
+     if(daysEl) daysEl.innerText = "00";
+     if(hoursEl) hoursEl.innerText = "00";
+     if(minutesEl) minutesEl.innerText = "00";
+     if(secondsEl) secondsEl.innerText = "00";
+     return;
+   }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+   const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    daysEl.innerText = days.toString().padStart(2, "0");
-    hoursEl.innerText = hours.toString().padStart(2, "0");
-    minutesEl.innerText = minutes.toString().padStart(2, "0");
-    secondsEl.innerText = seconds.toString().padStart(2, "0");
-  }
+   // padStart(2, "0") giúp hiển thị dạng 01, 02 thay vì 1, 2
+   if(daysEl) daysEl.innerText = days.toString().padStart(2, "0");
+   if(hoursEl) hoursEl.innerText = hours.toString().padStart(2, "0");
+   if(minutesEl) minutesEl.innerText = minutes.toString().padStart(2, "0");
+   if(secondsEl) secondsEl.innerText = seconds.toString().padStart(2, "0");
+ }
 
-  // Cập nhật mỗi giây
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+ // Chạy hàm cập nhật ngay lập tức và sau đó mỗi giây
+ updateCountdown();
+ setInterval(updateCountdown, 1000);
 
   // 2. SCROLL ANIMATION (Intersection Observer cho class fade-in)
   const fadeElements = document.querySelectorAll('.fade-in');
