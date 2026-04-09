@@ -412,7 +412,7 @@ a {
   color: white;
   text-align: center;
   padding: 3rem 1rem;
-  margin-top: 0;      /* <--- Đổi thành 0 hoặc xóa hẳn dòng này đi */
+  margin-top: 0 ;      /* <--- Đổi thành 0 hoặc xóa hẳn dòng này đi */
 
 }
 
@@ -498,16 +498,17 @@ a {
 /* ================= THÊM ẢNH NỀN CHO TỪNG PHẦN ================= */
 
 /* 1. Phần Countdown */
-.countdown-section {
+/* .countdown-section 
   /* background-image: url('../img/anh1.png'); /* <-- Thay tên ảnh của bạn vào đây */
-  background-size: cover;
+  /* background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   border-radius: 20px; /* Bo góc mượt mà */
-  overflow: hidden;
-  margin-bottom: 2rem; */
-}
+  /* overflow: hidden; */
+  /* margin-bottom: 2rem;  */ */
+   */
+
 
 /* 2. Phần Timelines */
 .schedule-section {
@@ -522,7 +523,7 @@ a {
 }
 
 /* 3. Phần Dress Code & Event Details */
-/* .venue-section {
+/*  .venue-section {
   background-image: url('../img/anh3.png'); /* <-- Thay tên ảnh của bạn vào đây */
   background-size: cover;
   background-position: center;
@@ -531,7 +532,7 @@ a {
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 2rem;
-} */
+}
 
 /* ================= LỚP PHỦ MỜ (OVERLAY) ================= */
 /* Rất quan trọng: Giúp làm mờ ảnh nền đi một chút để chữ màu tím bên trên vẫn đọc được rõ ràng */
